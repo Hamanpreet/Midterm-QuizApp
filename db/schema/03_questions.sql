@@ -5,5 +5,5 @@ CREATE TABLE questions (
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
   question VARCHAR(1000) NOT NULL,
-  answer_id INTEGER REFERENCES options(id)
+  answer_id INTEGER
 );
