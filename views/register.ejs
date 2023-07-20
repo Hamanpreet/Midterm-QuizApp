@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Login</title>
+  <title>Register</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -18,8 +18,11 @@
 </head>
 
 <body>
-  <h1>Login</h1>
-  <form class="login-form" action="/login" method="POST">
+  <h1>Register</h1>
+  <form action="/register" method="POST">
+    <div>
+      <input type="text" class="margin-m1" placeholder="Name" required="required">
+    </div>
     <div>
       <input 
       type="email"
@@ -37,9 +40,16 @@
       required>
     </div>
     <div>
-      <input type="submit" value="Login">
+      <input 
+      type="password2"
+      class="margin-m1"
+      placeholder="Confirm password" 
+      required>
     </div>
-    <a href="/register">Register</a>
+    <div>
+      <input type="submit" value="Register">
+    </div>
+    <a href="/login">Already registered? Login here</a>
     
   </form>
 
