@@ -1,18 +1,16 @@
-const db = require("./connection");
+const db = require('./connection');
 
 const getAllPublicQuizzes = () => {
   return db
-    .query(
-      `
+  .query(`
   SELECT *
   FROM quizzes
   WHERE private = 'false';
-  `
-    )
-    .then((res) => {
-      return res.rows;
-    })
-    .catch((err) => console.error(err.message));
+  `)
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => console.error(err.message));
 };
 
-module.exports = { getAllPublicQuizzes };
+module.exports = { getAllPublicQuizzes }
