@@ -8,8 +8,7 @@ const getAllPublicQuizzes = () => {
   WHERE private = 'false';
   `)
   .then(res => {
-    console.log(res.rows);
-    return res.rows || null;
+    return res.rows;
   })
   .catch(err => console.error(err.message));
 };

@@ -7,7 +7,8 @@ const database = require("../db/database")
 router.get('/', (req, res) => {
   database.getAllPublicQuizzes()
   .then((quizzes)=> {
-    res.send({quizzes})
+    const templateVars = { quizzes: quizzes };
+    res.render("quizzes", templateVars)
   })
   .catch((err)=>{
     console.log(`An error occurred: ${err}`)
