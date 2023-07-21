@@ -30,10 +30,10 @@ router.post("/:id", (req, res) => {
 
   getUserWithEmail(email).then((user) => {
     if (!user) {
-      return res.send({ error: "no user with that id" });
+      return res.send({ error: "no user with that email" });
     }
     if (password !== user.password) {
-      return res.send({ error: "error" });
+      return res.send({ error: "password not correct" });
     }
     req.session.userId = user.id;
     console.log(user);
