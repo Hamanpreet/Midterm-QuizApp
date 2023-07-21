@@ -24,14 +24,14 @@
 
   <body>
     <h1>Quiz Settings</h1>
-    <h2><%= quiz[0].title %></h2>
+    <h2><%= quiz.title %></h2>
     <form class="quiz-settings-form" action="/quiz-settings/:id" method="POST">
       <div>
         <input
           type="title"
           class="margin-m1"
           name="title"
-          placeholder="<%= quiz[0].title %>"
+          placeholder="<%= quiz.title %>"
           required
         />
       </div>
@@ -40,19 +40,19 @@
           type="description"
           class="margin-m1"
           name="description"
-          placeholder="<%= quiz[0].description %>"
+          placeholder="<%= quiz.description %>"
         />
       </br>
         <button>Add Question</button>
-        <%for (let question in quiz) {%>
+        <%for (let question in quizQuestions) {%>
         <div class="radio">
           <input
             type="radio"
-            id="<%= quiz[question].id %>"
-            name="<%= quiz[question].id %>"
+            id="<%= quizQuestions[question].id %>"
+            name="questions"
           />
-          <label for="<%= quiz[question].id %>"
-            ><%= quiz[question].question_title %></label
+          <label for="<%= quizQuestions[question].id %>"
+            ><%= quizQuestions[question].title %></label
           >
         </div>
         <% } %>
