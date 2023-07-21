@@ -23,11 +23,10 @@ router.get('/', (req, res) => {
 
 
 // Log a user in
-router.post("/:id", (req, res) => {
+router.post("/", (req, res) => {
   console.log(req.body.password);
   const email = req.body.email;
   const password = req.body.password;
-  req.session.user_id = req.params.id;
 
 
   getUserWithEmail(email).then((user) => {
@@ -39,13 +38,14 @@ router.post("/:id", (req, res) => {
     }
     req.session.userId = user.id;
     console.log(user);
-    res.send({
-      user: {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-      },
-    });
+    res.redirect('/quiz-settings');
+    // res.send({
+    //   user: {
+    //     name: user.name,
+    //     email: user.email,
+    //     id: user.id,
+    //   },
+    // });
   })
   .catch((err) => {
     console.error(err.message);
