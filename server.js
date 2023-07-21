@@ -5,6 +5,8 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -25,6 +27,18 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(cookieParser());
+app.use(
+  session({
+    secret: '1010',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false, // Set to true for HTTPS environments
+      maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time (in milliseconds)
+    },
+  })
+);
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

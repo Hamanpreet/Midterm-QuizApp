@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 // const database = require("../db/queries/users.js");
 const db = require('../db/connection');
-const session = require('express-session');
+//const session = require('express-session');
 
 
 router.get('/', (req, res) => {
@@ -47,6 +47,7 @@ router.post('/', (req,res) => {
           [name, email, password]
         ).then(result => {
           console.log(result.rows);
+          res.redirect('/login');
         })
         
       }
