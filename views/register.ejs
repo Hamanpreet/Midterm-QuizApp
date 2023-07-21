@@ -19,9 +19,16 @@
 
 <body>
   <h1>Register</h1>
+  <ul>
+    <% if(typeof errors != 'undefined') { %>
+      <% errors.forEach(error => {  %>
+        <li><%= error.message %></li>
+      <% }) %>
+    <% } %>
+  </ul>
   <form action="/register" method="POST">
     <div>
-      <input type="text" class="margin-m1" placeholder="Name" required="required">
+      <input type="text" name="name" class="margin-m1" placeholder="Name" required>
     </div>
     <div>
       <input 
@@ -41,8 +48,9 @@
     </div>
     <div>
       <input 
-      type="password2"
+      type="password"
       class="margin-m1"
+      name="password2"
       placeholder="Confirm password" 
       required>
     </div>
