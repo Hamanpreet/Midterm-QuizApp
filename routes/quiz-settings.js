@@ -1,9 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db/connection");
+const quizQueries = require("../db/queries/quiz");
 
-router.get("/", (req, res) => {
-  res.render("quiz-settings");
+router.get("/:id", (req, res) => {
+  req.session.quiz_id = req.params.id;
+  quizQueries
+    .getQuiz(req.session.quiz_id)
+    .then((quiz) => {
+      if (!quiz) {
+        return res.send({ error: "no quiz with that id" });
+      }
+      quizQueries
+        .getQuizQuestions(req.session.quiz_id)
+        .then((quizQuestions) => {
+          const quizInfo = { quiz, quizQuestions };
+          console.log(quizInfo);
+          res.render("quiz-settings", quizInfo);
+        });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
 });
 
 module.exports = router;
