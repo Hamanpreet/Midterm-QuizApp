@@ -1,3 +1,21 @@
+.margin-m1 {
+  margin-top:15px;
+}
+
+button.normal {
+  font-size:14px;
+  font-weight:600;
+  padding: 15px 30px;
+  color:#000;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  border:none;
+  outline:none;
+  transition:0.2s;
+  margin-top:15px;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -15,4 +33,12 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+
+  .login-form {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    
+  }
 }
