@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login</title>
-
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <title>Available Quizzes</title>
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
     <link rel="stylesheet" href="/vendor/border-box.css" />
     <link rel="stylesheet" href="/styles/main.css" />
@@ -23,30 +20,21 @@
   </head>
 
   <body>
-    <h1>Login</h1>
-    <form class="login-form" action="/login/:id" method="POST">
-      <div>
-        <input
-          type="email"
-          class="margin-m1"
-          name="email"
-          placeholder="Email"
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          class="margin-m1"
-          name="password"
-          placeholder="Password"
-          required
-        />
-      </div>
-      <div>
-        <input type="submit" value="Login" />
-      </div>
-      <a href="/register">Register</a>
-    </form>
+    <header>
+      <h1>Available Quizzes</h1>
+    </header>
+
+    <div class="container">
+      <ul class="quiz-list">
+        <% for (let i = 0; i < quizzes.length; i++) { %>
+        <li>
+          <span class="quiz-number"><%= i + 1 %>.</span>
+          <a href="/quiz/<%=quizzes[i].id%>"
+            ><%=quizzes[i].title%>: <%=quizzes[i].description%></a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
   </body>
 </html>

@@ -13,6 +13,7 @@ const getUserWithEmail = function (email) {
       [email]
     )
     .then((res) => {
+      console.log(res.rows);
       return res.rows[0] || null;
     })
     .catch((err) => console.error(err.message));
@@ -24,6 +25,7 @@ router.get("/", (req, res) => {
 
 // Log a user in
 router.post("/:id", (req, res) => {
+  console.log(req.body.password);
   const email = req.body.email;
   const password = req.body.password;
   req.session.user_id = req.params.id;
@@ -37,6 +39,7 @@ router.post("/:id", (req, res) => {
         return res.send({ error: "password not correct" });
       }
       req.session.userId = user.id;
+      console.log(user);
       res.send({
         user: {
           name: user.name,
