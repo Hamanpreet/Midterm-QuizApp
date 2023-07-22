@@ -33,4 +33,17 @@ const getQuizQuestions = function (id) {
     .catch((err) => console.error(err.message));
 };
 
-module.exports = { getQuiz, getQuizQuestions };
+const getAllPublicQuizzes = () => {
+  return db
+  .query(`
+  SELECT *
+  FROM quizzes
+  WHERE private = 'false';
+  `)
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => console.error(err.message));
+};
+
+module.exports = { getQuiz, getQuizQuestions, getAllPublicQuizzes };

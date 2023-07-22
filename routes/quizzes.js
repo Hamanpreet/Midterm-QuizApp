@@ -2,7 +2,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const database = require("../db/database")
+const database = require("../db/queries/quiz");
 
 
 router.get('/', (req, res) => {
