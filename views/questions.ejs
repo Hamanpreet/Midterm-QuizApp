@@ -18,15 +18,31 @@
     <h1>Available Quizzes</h1>
   </header>
 
-  <div class="container">
-    <ul class="quiz-list">
-      <% for (let i = 0; i < quizzes.length; i++) { %>
-        <li>
-          <span class="quiz-number"><%= i + 1 %>.</span>
-          <a href="/quizzes/<%=quizzes[i].id%>"><%=quizzes[i].title%>: <%=quizzes[i].description%></a>
-        </li>
-      <% } %>
+<div class="container">
+  <% for (let i = 0; i < questions.length; i++) { %>
+    <span class="quiz-number"><%= i + 1 %>.</span>
+    <h2 class="question"><%=questions[i].question%></h2>
+  <form>
+    <ul class="options">
+      <li>
+        <input type="radio" id="optionA" name="answer" value="A">
+        <label for="optionA">A. London</label>
+      </li>
+      <li>
+        <input type="radio" id="optionB" name="answer" value="B">
+        <label for="optionB">B. Paris</label>
+      </li>
+      <li>
+        <input type="radio" id="optionC" name="answer" value="C">
+        <label for="optionC">C. Rome</label>
+      </li>
+      <li>
+        <input type="radio" id="optionD" name="answer" value="D">
+        <label for="optionD">D. Berlin</label>
+      </li>
     </ul>
-  </div>
+  </form>
+  <% } %>
+</div>
 </body>
 </html>
