@@ -24,7 +24,7 @@
       <% for (let i = 0; i < quizzes.length; i++) { %>
         <li>
           <span class="quiz-number"><%= i + 1 %>.</span>
-          <a href="/quiz/<%=quizzes[i].id%>"><%=quizzes[i].title%>: <%=quizzes[i].description%></a>
+          <a href="/quizzes/<%=quizzes[i].id%>"><%=quizzes[i].title%>: <%=quizzes[i].description%></a>
         </li>
       <% } %>
     </ul>
