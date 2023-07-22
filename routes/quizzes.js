@@ -4,7 +4,7 @@ const router  = express.Router();
 
 const database = require("../db/queries/quiz");
 
-
+//show all public quizzes
 router.get('/', (req, res) => {
   database.getAllPublicQuizzes()
   .then((quizzes)=> {
@@ -16,6 +16,16 @@ router.get('/', (req, res) => {
   });
 });
 
+//show a particular quiz questions
+router.get("/:id", (req, res) => {
+  database.getQuestionsWithQuizId(req.params.id)
+  .then((questions)=>{
+    res.send(questions);
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+});
 
 
 module.exports = router;

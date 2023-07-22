@@ -46,4 +46,17 @@ const getAllPublicQuizzes = () => {
   .catch(err => console.error(err.message));
 };
 
-module.exports = { getQuiz, getQuizQuestions, getAllPublicQuizzes };
+const getQuestionsWithQuizId = (quizId)=>{
+  return db
+  .query(`
+  SELECT *
+  FROM questions
+  WHERE quiz_Id = ${quizId};
+  `)
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => console.error(err.message));
+};
+
+module.exports = { getQuiz, getQuizQuestions, getAllPublicQuizzes, getQuestionsWithQuizId };
