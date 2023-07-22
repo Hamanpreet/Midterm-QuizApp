@@ -18,8 +18,9 @@ const getAttemptsForUserID = function(userid) {
   .catch(err => console.error(err.message));
 };
 
-router.get('/', (req, res) => {
-  const userID = req.session.userId;
+router.get('/:userId', (req, res) => {
+  // Get the userId from the URL parameter
+  const userID = req.params.userId;
   console.log(userID);
   getAttemptsForUserID(userID)
   .then((attempts) => {
