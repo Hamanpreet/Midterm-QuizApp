@@ -51,8 +51,7 @@ const getQuestionsWithQuizId = (quizId)=>{
   .query(`
   SELECT *
   FROM questions
-  WHERE quiz_Id = ${quizId};
-  `)
+  WHERE quiz_Id = $1`, [quizId])
   .then(res => {
     return res.rows;
   })
