@@ -39,11 +39,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
   }
 
   header {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     padding: 15px;
     color: white;
     text-align: center;
@@ -71,7 +70,7 @@ body {
     max-width: 200px;
     margin: 0 auto;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -115,14 +114,5 @@ body {
         }
       }
     }
-
   }
-}
-
-.radio {
-  display: flex;
-}
-
-.radio input {
-  margin: 10px;
 }
