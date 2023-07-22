@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login</title>
+    <title>quiz-settings</title>
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,7 +24,44 @@
 
   <body>
     <h1>Quiz Settings</h1>
+    <h2><%= quiz.title %></h2>
     <a href="/attempts">Attempts</a>
-    <form class="quiz-form" action="/quiz/:id" method="POST"></form>
+    <form class="quiz-settings-form" action="/quiz-settings/:id" method="POST">
+      <div>
+        <input
+          type="title"
+          class="margin-m1"
+          name="title"
+          placeholder="<%= quiz.title %>"
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="description"
+          class="margin-m1"
+          name="description"
+          placeholder="<%= quiz.description %>"
+        />
+      </br>
+        <button>Add Question</button>
+        <%for (let question in quizQuestions) {%>
+        <div class="radio">
+          <input
+            type="radio"
+            id="<%= quizQuestions[question].id %>"
+            name="questions"
+          />
+          <label for="<%= quizQuestions[question].id %>"
+            ><%= quizQuestions[question].title %></label
+          >
+        </div>
+        <% } %>
+      </div>
+
+      <div>
+        <input type="submit" value="Save" />
+      </div>
+    </form>
   </body>
 </html>
