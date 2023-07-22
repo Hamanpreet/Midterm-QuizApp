@@ -31,26 +31,25 @@ router.post("/", (req, res) => {
 
   getUserWithEmail(email).then((user) => {
     if (!user) {
-      return res.send({ error: "no user with that email" });
+      return res.status(404).send({ error: "no user with that email" });
     }
     if (password !== user.password) {
-      return res.send({ error: "password not correct" });
+      return res.status(403).send({ error: "password not correct" });
     }
     req.session.userId = user.id;
     console.log(user);
     res.redirect('/quiz-settings');
-    // res.send({
-    //   user: {
-    //     name: user.name,
-    //     email: user.email,
-    //     id: user.id,
-    //   },
-    // });
   })
   .catch((err) => {
     console.error(err.message);
     res.status(500).send('An error occurred');
   });
+});
+
+//clears cookie and redirect to login page
+router.post("/logout", (req,res) =>{
+  req.session.user_id = null;
+  res.redirect('/login');
 });
 
 module.exports = router;
