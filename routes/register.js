@@ -49,11 +49,11 @@ router.post('/', (req,res) => {
           console.log(result.rows);
           res.redirect('/login');
         })
-        
+
       }
-      
+
     })
-    .catch(err => console.error(err.message)); 
+    .catch(err => console.error(err.message));
   }
 
 });
