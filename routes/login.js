@@ -1,26 +1,11 @@
 const express = require('express');
 const router  = express.Router();
-const db = require('../db/connection');
 
-const getUserWithEmail = function(email) {
-  return db
-  .query(`
-  SELECT *
-  FROM users
-  WHERE users.email = $1;
-  `,[email])
-  .then(res => {
-    console.log(res.rows);
-    return res.rows[0] || null;
-  })
-  .catch(err => console.error(err.message));
-};
-
+const database = require("../db/queries/users");
 
 router.get('/', (req, res) => {
   res.render('login');
 });
-
 
 // Log a user in
 router.post("/", (req, res) => {
@@ -29,7 +14,7 @@ router.post("/", (req, res) => {
   const password = req.body.password;
 
 
-  getUserWithEmail(email).then((user) => {
+  database.getUserWithEmail(email).then((user) => {
     if (!user) {
       return res.status(404).send({ error: "no user with that email" });
     }
