@@ -1,19 +1,19 @@
 .margin-m1 {
-  margin-top:15px;
+  margin-top: 15px;
 }
 
 button.normal {
-  font-size:14px;
-  font-weight:600;
+  font-size: 14px;
+  font-weight: 600;
   padding: 15px 30px;
-  color:#000;
+  color: #000;
   background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
-  border:none;
-  outline:none;
-  transition:0.2s;
-  margin-top:15px;
+  border: none;
+  outline: none;
+  transition: 0.2s;
+  margin-top: 15px;
 }
 
 body {
@@ -35,10 +35,108 @@ body {
   );
 
   .login-form {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    
+  }
+
+  header {
+    background-color: #4caf50;
+    padding: 15px;
+    color: white;
+    text-align: center;
+  }
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 30px;
+
+  .quiz-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .start-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+
+  .quiz-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .quiz-number {
+        min-width: 25px;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      a {
+        display: block;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+    }
+  }
+
+  .question {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
   }
 }

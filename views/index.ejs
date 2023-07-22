@@ -12,14 +12,36 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
-
+  <link rel="stylesheet" href="/styles/nav.css" />
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <h1>Have Fun</h1>
-  <a href="/login">Login</a>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <a href="/">Quiz App</a>
+        </div>
+        <ul class="navbar-menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/createQuiz">Create Quiz</a></li>
+          <li><a href="/quizzes">Public Quizzes</a></li>
+          <li id="login-item"><a href="/login" id="login-link">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Quiz Homepage</h1>
+  </header>
+
+  <div class="container">
+    <h2 class="quiz-title">Welcome to our Quiz!</h2>
+    <p>
+      Test your knowledge with our exciting quiz. Are you ready to begin?
+    </p>
+    <a href="/quizzes" class="start-button">Start Quiz</a>
+  </div>
   </form>
 
 

@@ -47,6 +47,8 @@ const usersRoutes = require("./routes/users");
 const login = require("./routes/login");
 const register = require("./routes/register");
 const quizSettings = require("./routes/quiz-settings");
+const quizzes = require("./routes/quizzes");
+const attempts = require("./routes/attempts");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -56,6 +58,8 @@ app.use("/users", usersRoutes);
 app.use("/login", login);
 app.use("/register", register);
 app.use("/quiz-settings", quizSettings);
+app.use("/quizzes", quizzes);
+app.use("/attempts", attempts);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
