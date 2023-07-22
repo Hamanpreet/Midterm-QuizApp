@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Available Quizzes</title>
+  <title>Attempts</title>
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
@@ -16,18 +16,19 @@
 
 <body>
   <header>
-    <h1>Available Quizzes</h1>
+   
   </header>
 
   <div class="container">
-    <ul class="quiz-list">
-      <% for (let i = 0; i < quizzes.length; i++) { %>
+    <ul class="Attempt-list">
+      
+      <% for (let i = 0; i < attempts.length; i++) { %>
         <li>
-          <span class="quiz-number"><%= i + 1 %>.</span>
-          <a href="/quizzes/<%=quizzes[i].id%>"><%=quizzes[i].title%>: <%=quizzes[i].description%></a>
+          <%= attempts[i].title %> <%= attempts[i].grade %>
         </li>
       <% } %>
     </ul>
   </div>
 </body>
+
 </html>

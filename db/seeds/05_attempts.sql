@@ -1,5 +1,5 @@
 -- Attempts for quiz_id 1 or 2 (grade out of 4)
-INSERT INTO attempts (user_id, quiz_id, grade) VALUES (20, 4, '2/2')
+INSERT INTO attempts (user_id, quiz_id, grade) VALUES (20, 4, '2/2');
 INSERT INTO attempts (user_id, quiz_id, grade) VALUES (1, 1, '3/4');
 INSERT INTO attempts (user_id, quiz_id, grade) VALUES (2, 1, '2/4');
 INSERT INTO attempts (user_id, quiz_id, grade) VALUES (3, 1, '4/4');

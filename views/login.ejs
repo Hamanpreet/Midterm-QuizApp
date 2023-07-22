@@ -22,31 +22,34 @@
     <script defer src="/scripts/app.js"></script>
   </head>
 
-  <body>
-    <h1>Login</h1>
-    <form class="login-form" action="/login/:id" method="POST">
-      <div>
-        <input
-          type="email"
-          class="margin-m1"
-          name="email"
-          placeholder="Email"
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          class="margin-m1"
-          name="password"
-          placeholder="Password"
-          required
-        />
-      </div>
-      <div>
-        <input type="submit" value="Login" />
-      </div>
-      <a href="/register">Register</a>
-    </form>
-  </body>
+<body>
+  <h1>Login</h1>
+  <form class="login-form" action="/login" method="POST">
+    <div>
+      <input 
+      type="email"
+      class="margin-m1"
+      name="email"
+      placeholder="Email" 
+      required>
+    </div>
+    <div>
+      <input 
+      type="password"
+      class="margin-m1"
+      name="password"
+      placeholder="Password" 
+      required>
+    </div>
+    <div>
+      <input type="submit" value="Login">
+    </div>
+    <a href="/register">Register</a>
+    
+  </form>
+
+
+  
+</body>
+
 </html>
