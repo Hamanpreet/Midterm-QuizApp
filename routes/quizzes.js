@@ -20,7 +20,9 @@ router.get('/', (req, res) => {
 router.get("/:id", (req, res) => {
   database.getQuestionsWithQuizId(req.params.id)
   .then((questions)=>{
-    res.send(questions);
+    console.log(questions);
+    const templateVars = {questions : questions};
+    res.render("questions",templateVars);
   })
   .catch((err)=>{
     console.log(err);
