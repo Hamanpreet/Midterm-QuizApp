@@ -15,3 +15,7 @@ router.get('/', (req, res) => {
     console.log(`An error occurred: ${err}`)
   });
 });
+
+
+
+module.exports = router;
