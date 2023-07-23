@@ -28,6 +28,19 @@
       <h2><%= options[0].title %></h2>
     </div>
     <div class="quiz-settings-container">
+      <form action="" method="POST">
+        <h5>Title</h5>
+        <textarea id="title" name="title">
+<%= options[0].title %>
+        </textarea>
+        <h5>Question</h5>
+        <textarea id="question" name="question">
+<%= options[0].question %></textarea
+        >
+        <br />
+        <button class="button1" type="submit">SAVE</button>
+      </form>
+      <button class="button1" id="add-question">Add Option</button>
       <%for (let answers in options) {%>
       <div class="flex">
         <textarea id="description" name="description">

@@ -7,7 +7,6 @@ router.get("/:id", (req, res) => {
   quizQueries
     .getQuizQuestionsOptions(req.session.question_id)
     .then((options) => {
-      console.log(options);
       if (!options || Object.keys(options).length === 0) {
         return res.send({ error: "no quiz options with that id" });
       }

@@ -37,7 +37,7 @@ const getQuizQuestionsOptions = function (id) {
   return db
     .query(
       `
-  SELECT options.id, options.description, questions.id as question_id, questions.title
+  SELECT options.id, options.description, questions.id as question_id, questions.title, questions.question
   FROM questions
   JOIN options ON questions.id = question_id
   WHERE questions.id = $1;
@@ -80,16 +80,16 @@ const getQuestionsWithQuizId = (quizId) => {
     .catch((err) => console.error(err.message));
 };
 
-
 const getOptionsWithQuestionId = (questionId) => {
-  return db.query(`SELECT * FROM options WHERE question_id = $1`,[questionId])
-  .then(res => {
-    return res.rows;
-  })
-  .catch(err => {
-    console.error(err.message);
-  })
-}
+  return db
+    .query(`SELECT * FROM options WHERE question_id = $1`, [questionId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
 
 module.exports = {
   getQuiz,
