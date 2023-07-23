@@ -42,24 +42,46 @@
           <br />
           <button class="button1" type="submit">Commit</button>
         </form>
-        <button class="button1" id="add-question">Add Option</button>
+        <form action="/quiz-options/:id/new-option" method="POST">
+          <button class="button1" id="add-question">Add Option</button>
+        </form>
         <%for (let answers in options) {%>
+          <form
+            action="/quiz-options/<%= options[answers].id %>/update-option-text"
+            method="POST"
+          >
         <div class="flex">
-          <input
+          <%if (question[0].answer_id === options[answers].id){%>
+            <input
             type="radio"
-            id="<%= options[answers].id %>"
+            id="answer"
             name="answer"
-            value="answer"
+            value="on"
+            checked
           />
+          <%} else{%>
+            <input
+            type="radio"
+            id="answer"
+            name="answer"
+            value="on"
+          />
+            <%}%>
           <textarea id="description" name="description">
 <%= options[answers].description %></textarea
           >
-          <button class="button1" id="<%= options[answers].id %>">
-            Commit
-          </button>
-          <button class="button1" id="<%= options[answers].id %>">
-            Delete
-          </button>
+            <button class="button1" id="<%= options[answers].id %>">
+              Commit
+            </button>
+          </form>
+          <form
+            action="/quiz-options/<%= options[answers].id %>/delete-option"
+            method="POST"
+          >
+            <button class="button1" id="<%= options[answers].id %>">
+              Delete
+            </button>
+          </form>
         </div>
         <% } %>
       </div>

@@ -23,7 +23,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
   let { title, question } = req.body;
-  console.log(req.body);
 
   updateTable
     .updateQuestionTitle(title, req.session.question_id)
@@ -33,6 +32,51 @@ router.post("/:id", (req, res) => {
         .then(() => {
           res.redirect("/quiz-options/" + req.session.question_id);
         });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/new-option", (req, res) => {
+  updateTable
+    .createQuizOption(req.session.question_id)
+    .then(() => {
+      res.redirect("/quiz-options/" + req.session.question_id);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/delete-option", (req, res) => {
+  console.log(req.params.id);
+  updateTable
+    .deleteQuizOption(req.params.id)
+    .then(() => {
+      res.redirect("/quiz-options/" + req.session.question_id);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/update-option-text", (req, res) => {
+  let { description } = req.body;
+  req.body.answer === "on" ? (answer = true) : (answer = false);
+  updateTable
+    .updateOptionText(description, req.params.id)
+    .then(() => {
+      if (answer) {
+        updateTable.updateQuestionAnswer(
+          req.params.id,
+          req.session.question_id
+        );
+      }
+      res.redirect("/quiz-options/" + req.session.question_id);
     })
     .catch((err) => {
       console.error(err.message);

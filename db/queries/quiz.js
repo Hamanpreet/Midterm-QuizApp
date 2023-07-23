@@ -54,7 +54,7 @@ const getQuizQuestion = function (id) {
   return db
     .query(
       `
-  SELECT title, question
+  SELECT title, question, answer_id
   FROM questions
   WHERE questions.id = $1;
   `,
@@ -73,7 +73,8 @@ const getQuizQuestionsOptions = function (id) {
   SELECT options.id, options.description, questions.id as question_id
   FROM questions
   JOIN options ON questions.id = question_id
-  WHERE questions.id = $1;
+  WHERE questions.id = $1
+  ORDER BY options.id;
   `,
       [id]
     )
