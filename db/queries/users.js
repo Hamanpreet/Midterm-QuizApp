@@ -21,4 +21,16 @@ const getUserWithEmail = function(email) {
   .catch(err => console.error(err.message));
 };
 
-module.exports = { getUsers, getUserWithEmail };
+const addUserToDatabase = function(name,email,password) {
+  return db
+  .query(
+  `INSERT INTO users(name, email, password)
+  VALUES($1, $2, $3)
+  RETURNING *`,
+  [name, email, password]
+  ).then(result => {
+  console.log(result.rows);
+  })
+}
+
+module.exports = { getUsers, getUserWithEmail, addUserToDatabase };
