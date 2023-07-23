@@ -88,6 +88,50 @@ const updateQuestionQuestion = function (question, id) {
     .catch((err) => console.error(err.message));
 };
 
+const createQuizOption = function (id) {
+  return db
+    .query(
+      `
+      INSERT INTO options (question_id, description) VALUES ($1, 'New possible answer');
+  `,
+      [id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
+const deleteQuizOption = function (id) {
+  return db
+    .query(
+      `
+      DELETE FROM options WHERE id = $1;
+  `,
+      [id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
+const updateOptionText = function (text, id) {
+  return db
+    .query(
+      `
+      UPDATE options SET description = $1 WHERE id = $2;
+  `,
+      [text, id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
+const updateQuestionAnswer = function (answerId, QuestionId) {
+  return db
+    .query(
+      `
+      UPDATE questions SET answer_ID = $1 WHERE id = $2;
+  `,
+      [answerId, QuestionId]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 module.exports = {
   createQuiz,
   updateQuizTitle,
@@ -97,4 +141,8 @@ module.exports = {
   createQuizQuestion,
   updateQuestionTitle,
   updateQuestionQuestion,
+  createQuizOption,
+  deleteQuizOption,
+  updateOptionText,
+  updateQuestionAnswer,
 };
