@@ -46,6 +46,7 @@ const userApiRoutes = require("./routes/users-api");
 const usersRoutes = require("./routes/users");
 const login = require("./routes/login");
 const register = require("./routes/register");
+const quizOptions = require("./routes/quiz-options");
 const quizSettings = require("./routes/quiz-settings");
 const quizzes = require("./routes/quizzes");
 const attempts = require("./routes/attempts");
@@ -57,6 +58,7 @@ app.use("/users", usersRoutes);
 // Note: mount other resources here, using the same pattern above
 app.use("/login", login);
 app.use("/register", register);
+app.use("/quiz-options", quizOptions);
 app.use("/quiz-settings", quizSettings);
 app.use("/quizzes", quizzes);
 app.use("/attempts", attempts);
