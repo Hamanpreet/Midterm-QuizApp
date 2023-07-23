@@ -15,33 +15,26 @@
 
 <body>
   <header>
-    <h1>Available Quizzes</h1>
+    <h1>Quiz Questions</h1>
   </header>
 
 <div class="container">
-  <% for (let i = 0; i < questions.length; i++) { %>
-    <span class="quiz-number"><%= i + 1 %>.</span>
-    <h2 class="question"><%=questions[i].question%></h2>
-  <form>
+  <% let serialNumber = 1; %>
+  <% for (const question of questions) { %>
+    <h2 class="question"><%= serialNumber %>. <%= question.question %></h2>
     <ul class="options">
-      <li>
-        <input type="radio" id="optionA" name="answer" value="A">
-        <label for="optionA">A. London</label>
-      </li>
-      <li>
-        <input type="radio" id="optionB" name="answer" value="B">
-        <label for="optionB">B. Paris</label>
-      </li>
-      <li>
-        <input type="radio" id="optionC" name="answer" value="C">
-        <label for="optionC">C. Rome</label>
-      </li>
-      <li>
-        <input type="radio" id="optionD" name="answer" value="D">
-        <label for="optionD">D. Berlin</label>
-      </li>
+      <% for (const optionGroup of options) { %>
+        <% for (const option of optionGroup) { %>
+          <% if (option.question_id === question.id) { %>
+            <li>
+              <input type="radio" name="<%= 'question_' + question.id %>" id="<%= 'option_' + option.id %>" value="<%= option.id %>" />
+                <label for="<%= 'option_' + option.id %>"><%= option.description %></label>
+            </li>
+          <% } %>
+        <% } %>
+      <% } %>
     </ul>
-  </form>
+    <% serialNumber++; %>
   <% } %>
 </div>
 </body>
