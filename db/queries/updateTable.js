@@ -1,5 +1,16 @@
 const db = require("../connection");
 
+const createQuiz = function (id) {
+  return db
+    .query(
+      `
+      INSERT INTO quizzes (owner_id) VALUES ($1);
+  `,
+      [id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 const updateQuizTitle = function (title, id) {
   return db
     .query(
@@ -56,6 +67,7 @@ const deleteQuizQuestion = function (id) {
 };
 
 module.exports = {
+  createQuiz,
   updateQuizTitle,
   updateQuizDescription,
   updateQuizPrivacy,

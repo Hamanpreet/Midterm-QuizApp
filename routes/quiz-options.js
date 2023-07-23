@@ -11,7 +11,6 @@ router.get("/:id", (req, res) => {
         .getQuizQuestionsOptions(req.session.question_id)
         .then((options) => {
           const quizOptions = { question, options };
-          console.log(quizOptions);
           res.render("quiz-options", quizOptions);
         });
     })

@@ -43,6 +43,12 @@
       <button class="button1" id="add-question">Add Option</button>
       <%for (let answers in options) {%>
       <div class="flex">
+        <input
+          type="radio"
+          id="<%= options[answers].id %>"
+          name="answer"
+          value="answer"
+        />
         <textarea id="description" name="description">
 <%= options[answers].description %></textarea
         >
