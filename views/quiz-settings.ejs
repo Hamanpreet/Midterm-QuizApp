@@ -23,9 +23,11 @@
   </head>
 
   <body>
-  <div class="flex">
+
+    <div class="new-page">
+    <div class="flex">
       <h2>Quiz Settings: </h2>
-      <h2><%= quiz.title %></h2>
+      <h2><%= quiz.title.trim() %></h2>
     </div>
     <div class="quiz-settings-container" >
       <form action="/quiz-settings/:id" method="POST">
@@ -34,7 +36,7 @@
             <textarea id="title" name="title" ><%= quiz.title %>
             </textarea>
             <H4>Description</H4>
-            <textarea id="description" name="description" ><%= quiz.description %></textarea>
+            <textarea id="description" name="description" cols=40><%= quiz.description %></textarea>
           </div>
           <div class="flex">
             <% if(quiz.private === true){%>
@@ -62,6 +64,6 @@
         <% } %>
       </div>
     </div>
-
+  </div>
   </body>
 </html>

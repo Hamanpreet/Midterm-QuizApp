@@ -16,6 +16,22 @@ const getQuiz = function (id) {
     .catch((err) => console.error(err.message));
 };
 
+const getNewestQuiz = function () {
+  return db
+    .query(
+      `
+  SELECT *
+  FROM quizzes
+  ORDER BY id DESC
+  LIMIT 1;
+  `
+    )
+    .then((res) => {
+      return res.rows[0] || null;
+    })
+    .catch((err) => console.error(err.message));
+};
+
 const getQuizQuestions = function (id) {
   return db
     .query(
@@ -23,7 +39,8 @@ const getQuizQuestions = function (id) {
   SELECT questions.title as title, questions.id as id, questions.question
   FROM questions
   JOIN quizzes ON quizzes.id = quiz_id
-  WHERE quizzes.id = $1;
+  WHERE quizzes.id = $1
+  ORDER BY questions.id;
   `,
       [id]
     )
@@ -107,28 +124,33 @@ const getOptionsWithQuestionId = (questionId) => {
     });
 };
 
-const getAttemptsForUserID = function(userid) {
+const getAttemptsForUserID = function (userid) {
   return db
-  .query(`
+    .query(
+      `
   SELECT quizzes.title, attempts.grade, users.name
   FROM attempts
   JOIN users ON attempts.user_id=users.id
   JOIN quizzes ON attempts.quiz_id=quizzes.id
   WHERE users.id = $1;
-  `,[userid])
-  .then(res => {
-    console.log(res.rows);
-    return res.rows;
-  })
-  .catch(err => console.error(err.message));
+  `,
+      [userid]
+    )
+    .then((res) => {
+      console.log(res.rows);
+      return res.rows;
+    })
+    .catch((err) => console.error(err.message));
 };
 
-module.exports = { getQuiz,
+module.exports = {
+  getQuiz,
+  getNewestQuiz,
   getQuizQuestions,
   getQuizQuestion,
   getAllPublicQuizzes,
   getQuestionsWithQuizId,
   getQuizQuestionsOptions,
   getOptionsWithQuestionId,
-  getAttemptsForUserID 
+  getAttemptsForUserID,
 };

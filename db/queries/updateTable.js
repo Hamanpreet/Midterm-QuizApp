@@ -1,5 +1,16 @@
 const db = require("../connection");
 
+const createQuiz = function (id) {
+  return db
+    .query(
+      `
+      INSERT INTO quizzes (owner_id, title) VALUES ($1, 'untitled');
+  `,
+      [id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 const updateQuizTitle = function (title, id) {
   return db
     .query(
@@ -55,10 +66,35 @@ const deleteQuizQuestion = function (id) {
     .catch((err) => console.error(err.message));
 };
 
+const updateQuestionTitle = function (title, id) {
+  return db
+    .query(
+      `
+      UPDATE questions SET title = $1 WHERE id = $2;
+  `,
+      [title, id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
+const updateQuestionQuestion = function (question, id) {
+  return db
+    .query(
+      `
+      UPDATE questions SET question = $1 WHERE id = $2;
+  `,
+      [question, id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 module.exports = {
+  createQuiz,
   updateQuizTitle,
   updateQuizDescription,
   updateQuizPrivacy,
   deleteQuizQuestion,
   createQuizQuestion,
+  updateQuestionTitle,
+  updateQuestionQuestion,
 };
