@@ -47,12 +47,17 @@
             <button class="button1" type="submit">SAVE</button>
       </form>
 
+      <form action="/quiz-settings/:id/new-question" method="POST">
         <button class="button1" id="add-question">Add Question</button>
+      </form>
         <%for (let question in quizQuestions) {%>
           <div class="flex">
             <h5><%= quizQuestions[question].title %></h5>
-            <button class="button1" id="<%= quizQuestions[question].id %>">Edit</button>
+            <form action="/quiz-options/<%= quizQuestions[question].id %>">
+            <button class="button1" %>">Edit</button></form>
+            <form action="/quiz-settings/<%= quizQuestions[question].id %>/delete-question" method="POST">
             <button class="button1" id="<%= quizQuestions[question].id %>">Delete</button>
+          </form>
           </div>
         <% } %>
       </div>

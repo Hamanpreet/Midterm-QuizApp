@@ -24,12 +24,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//INSERT INTO questions (quiz_id, title, question, answer_id)
-
 router.post("/:id", (req, res) => {
   let { title, description } = req.body;
   let private = false;
-  console.log(req.body);
   req.body.private === "on" ? (private = true) : (private = false);
 
   updateTable
@@ -41,6 +38,31 @@ router.post("/:id", (req, res) => {
           updateTable.updateQuizPrivacy(private, req.session.quiz_id);
           res.redirect("/quiz-settings/" + req.session.quiz_id);
         });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/new-question", (req, res) => {
+  updateTable
+    .createQuizQuestion(req.session.quiz_id)
+    .then(() => {
+      res.redirect("/quiz-settings/" + req.session.quiz_id);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/delete-question", (req, res) => {
+  console.log(req.params.id);
+  updateTable
+    .deleteQuizQuestion(req.params.id)
+    .then(() => {
+      res.redirect("/quiz-settings/" + req.session.quiz_id);
     })
     .catch((err) => {
       console.error(err.message);

@@ -5,14 +5,15 @@ const quizQueries = require("../db/queries/quiz");
 router.get("/:id", (req, res) => {
   req.session.question_id = req.params.id;
   quizQueries
-    .getQuizQuestionsOptions(req.session.question_id)
-    .then((options) => {
-      console.log(options);
-      if (!options || Object.keys(options).length === 0) {
-        return res.send({ error: "no quiz options with that id" });
-      }
-      const quizOptions = { options };
-      res.render("quiz-options", quizOptions);
+    .getQuizQuestion(req.session.question_id)
+    .then((question) => {
+      quizQueries
+        .getQuizQuestionsOptions(req.session.question_id)
+        .then((options) => {
+          const quizOptions = { question, options };
+          console.log(quizOptions);
+          res.render("quiz-options", quizOptions);
+        });
     })
     .catch((err) => {
       console.error(err.message);
