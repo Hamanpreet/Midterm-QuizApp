@@ -129,6 +129,6 @@ module.exports = { getQuiz,
   getAllPublicQuizzes,
   getQuestionsWithQuizId,
   getQuizQuestionsOptions,
-  getOptionsWithQuestionId,,
+  getOptionsWithQuestionId,
   getAttemptsForUserID 
 };
