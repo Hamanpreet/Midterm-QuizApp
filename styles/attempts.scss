@@ -1,0 +1,39 @@
+/* Define variables */
+$border-color: #ddd;
+$background-color: #f2f2f2;
+$even-row-color: #f9f9f9;
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+ /
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  /* Style the header row */
+  thead {
+    background-color: $background-color;
+  }
+
+}
+
+h1 {
+  text-align: center;
+}
+
+.attempts-container {
+  margin: 20px;
+}
+
+/* Center the text in th and td elements */
+th.center,
+td.center {
+  text-align: center;
+  padding-left:2px;
+}
+
+

@@ -5,6 +5,7 @@ const quizQueries = require("../db/queries/quiz");
 router.get("/:id", (req, res) => {
   let button = true;
   req.session.quiz_id = req.params.id;
+  const user = req.session.user;
   quizQueries
     .getQuiz(req.session.quiz_id)
     .then((quiz) => {
@@ -14,7 +15,7 @@ router.get("/:id", (req, res) => {
       quizQueries
         .getQuizQuestions(req.session.quiz_id)
         .then((quizQuestions) => {
-          const quizInfo = { quiz, quizQuestions, button };
+          const quizInfo = { quiz, quizQuestions, button,user };
           console.log(quizInfo);
           res.render("quiz-settings", quizInfo);
         });

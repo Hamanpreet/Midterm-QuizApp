@@ -68,9 +68,26 @@ const getOptionsWithQuestionId = (questionId) => {
   })
 }
 
+const getAttemptsForUserID = function(userid) {
+  return db
+  .query(`
+  SELECT quizzes.title, attempts.grade, users.name
+  FROM attempts
+  JOIN users ON attempts.user_id=users.id
+  JOIN quizzes ON attempts.quiz_id=quizzes.id
+  WHERE users.id = $1;
+  `,[userid])
+  .then(res => {
+    console.log(res.rows);
+    return res.rows;
+  })
+  .catch(err => console.error(err.message));
+};
+
 module.exports = { getQuiz,
   getQuizQuestions,
   getAllPublicQuizzes,
   getQuestionsWithQuizId,
-  getOptionsWithQuestionId
+  getOptionsWithQuestionId,
+  getAttemptsForUserID 
 };

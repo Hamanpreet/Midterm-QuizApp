@@ -7,7 +7,9 @@ const database = require("../db/queries/quiz");
 router.get('/', (req, res) => {
   database.getAllPublicQuizzes()
   .then((quizzes)=> {
-    const templateVars = { quizzes: quizzes };
+    const user = req.session.user;
+    // const user = users[userID];
+    const templateVars = { quizzes: quizzes, user};
     res.render("quizzes", templateVars)
   })
   .catch((err)=>{

@@ -4,7 +4,8 @@ const router  = express.Router();
 const database = require("../db/queries/users");
 
 router.get('/', (req, res) => {
-  res.render('login');
+  const user = req.session.user;
+  res.render("login",{user});
 });
 
 // Log a user in
@@ -21,9 +22,10 @@ router.post("/", (req, res) => {
     if (password !== user.password) {
       return res.status(403).send({ error: "password not correct" });
     }
-    req.session.userId = user.id;
-    console.log(user);
-    res.redirect('/quiz-settings');
+    req.session.user = user;
+    
+    console.log(user.id);
+    res.redirect('/quizzes');
   })
   .catch((err) => {
     console.error(err.message);

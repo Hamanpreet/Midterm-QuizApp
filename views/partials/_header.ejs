@@ -27,9 +27,17 @@
         <ul id="navbar-menu">
           <li><a href="/">Home</a></li>
           <li><a href="/createQuiz">Create Quiz</a></li>
-          <li><a href="/quizzes">Public Quizzes</a></li>
           
-          <li id="login-item"><a href="/login" id="login-link">Login</a></li>
+          <% if(user) { %>
+            <p>Logged in as: <%= user.email%>
+              <form action="/logout" method="POST">
+              <button type="submit" class="btn btn-primary">Logout</button></p>
+              
+            </form>
+            <% } else { %>
+              <li><a href="/quizzes">Public Quizzes</a></li>
+              <li id="login-item"><a href="/login" id="login-link">Login</a></li>
+            <% } %> 
         </ul>
       </div>
       </section>

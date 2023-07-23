@@ -67,7 +67,8 @@ app.use("/quizAttempts", quizAttempts);
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const user = req.session.user;
+  res.render("index", {user});
 });
 
 app.listen(PORT, () => {
