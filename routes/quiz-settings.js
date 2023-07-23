@@ -5,6 +5,9 @@ const updateTable = require("../db/queries/updateTable");
 
 router.get("/", (req, res) => {
   user = req.session.user;
+  if (!user) {
+    return res.status(404).send({ error: "You are not signed in" });
+  }
   updateTable.createQuiz(user.id).then(() => {
     quizQueries.getNewestQuiz().then((quiz) => {
       res.redirect("/quiz-settings/" + quiz.id);
