@@ -33,40 +33,79 @@ const getQuizQuestions = function (id) {
     .catch((err) => console.error(err.message));
 };
 
+const getQuizQuestion = function (id) {
+  return db
+    .query(
+      `
+  SELECT title, question
+  FROM questions
+  WHERE questions.id = $1;
+  `,
+      [id]
+    )
+    .then((res) => {
+      return res.rows || null;
+    })
+    .catch((err) => console.error(err.message));
+};
+
+const getQuizQuestionsOptions = function (id) {
+  return db
+    .query(
+      `
+  SELECT options.id, options.description, questions.id as question_id
+  FROM questions
+  JOIN options ON questions.id = question_id
+  WHERE questions.id = $1;
+  `,
+      [id]
+    )
+    .then((res) => {
+      return res.rows || null;
+    })
+    .catch((err) => console.error(err.message));
+};
+
 const getAllPublicQuizzes = () => {
   return db
-  .query(`
+    .query(
+      `
   SELECT *
   FROM quizzes
   WHERE private = 'false';
-  `)
-  .then(res => {
-    return res.rows;
-  })
-  .catch(err => console.error(err.message));
+  `
+    )
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.error(err.message));
 };
 
-const getQuestionsWithQuizId = (quizId)=>{
+const getQuestionsWithQuizId = (quizId) => {
   return db
-  .query(`
+    .query(
+      `
   SELECT *
   FROM questions
-  WHERE quiz_Id = $1`, [quizId])
-  .then(res => {
-    return res.rows;
-  })
-  .catch(err => console.error(err.message));
+  WHERE quiz_Id = $1`,
+      [quizId]
+    )
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.error(err.message));
 };
 
 const getOptionsWithQuestionId = (questionId) => {
-  return db.query(`SELECT * FROM options WHERE question_id = $1`,[questionId])
-  .then(res => {
-    return res.rows;
-  })
-  .catch(err => {
-    console.error(err.message);
-  })
-}
+  return db
+    .query(`SELECT * FROM options WHERE question_id = $1`, [questionId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+};
 
 const getAttemptsForUserID = function(userid) {
   return db
@@ -86,8 +125,10 @@ const getAttemptsForUserID = function(userid) {
 
 module.exports = { getQuiz,
   getQuizQuestions,
+  getQuizQuestion,
   getAllPublicQuizzes,
   getQuestionsWithQuizId,
-  getOptionsWithQuestionId,
+  getQuizQuestionsOptions,
+  getOptionsWithQuestionId,,
   getAttemptsForUserID 
 };

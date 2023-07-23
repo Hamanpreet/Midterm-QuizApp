@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const quizQueries = require("../db/queries/quiz");
+const updateTable = require("../db/queries/updateTable");
 
 router.get("/:id", (req, res) => {
-  let button = true;
   req.session.quiz_id = req.params.id;
   const user = req.session.user;
   quizQueries
@@ -15,10 +15,55 @@ router.get("/:id", (req, res) => {
       quizQueries
         .getQuizQuestions(req.session.quiz_id)
         .then((quizQuestions) => {
-          const quizInfo = { quiz, quizQuestions, button,user };
-          console.log(quizInfo);
+          const quizInfo = { quiz, quizQuestions };
           res.render("quiz-settings", quizInfo);
         });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id", (req, res) => {
+  let { title, description } = req.body;
+  let private = false;
+  req.body.private === "on" ? (private = true) : (private = false);
+
+  updateTable
+    .updateQuizTitle(title, req.session.quiz_id)
+    .then(() => {
+      updateTable
+        .updateQuizDescription(description, req.session.quiz_id)
+        .then(() => {
+          updateTable.updateQuizPrivacy(private, req.session.quiz_id);
+          res.redirect("/quiz-settings/" + req.session.quiz_id);
+        });
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/new-question", (req, res) => {
+  updateTable
+    .createQuizQuestion(req.session.quiz_id)
+    .then(() => {
+      res.redirect("/quiz-settings/" + req.session.quiz_id);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/delete-question", (req, res) => {
+  console.log(req.params.id);
+  updateTable
+    .deleteQuizQuestion(req.params.id)
+    .then(() => {
+      res.redirect("/quiz-settings/" + req.session.quiz_id);
     })
     .catch((err) => {
       console.error(err.message);

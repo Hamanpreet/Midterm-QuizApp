@@ -2,11 +2,13 @@
   display: flex;
   justify-content: space-evenly;
   margin: 10px;
-}
-
-.flex h2 {
-  margin: 10px;
-  align-items: center;
+  h5 {
+    padding-right: 10px;
+  }
+  h2 {
+    margin: 10px;
+    align-items: center;
+  }
 }
 
 .flex-column {
@@ -14,7 +16,7 @@
   flex-direction: column;
 }
 
-.quiz-settings-form {
+.quiz-settings-container {
   display: flex;
   flex-direction: column;
   align-items: center;

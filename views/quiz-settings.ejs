@@ -27,31 +27,41 @@
       <h2>Quiz Settings: </h2>
       <h2><%= quiz.title %></h2>
     </div>
-    <form class="quiz-settings-form" action="/quiz-settings/:id" method="POST">
-      <div class="flex-column">
-        <H4>Title</H4>
-        <textarea id="title" name="title" cols="40"><%= quiz.title %>
-        </textarea>
-        <H4>Description</H4>
-        <textarea id="description" name="description" cols="40"><%= quiz.description %></textarea>
-      </div>
-      </br>
-        <button class="button1">Add Question</button>
+    <div class="quiz-settings-container" >
+      <form action="/quiz-settings/:id" method="POST">
+          <div class="flex-column">
+            <h4>Title</h4>
+            <textarea id="title" name="title" ><%= quiz.title %>
+            </textarea>
+            <H4>Description</H4>
+            <textarea id="description" name="description" ><%= quiz.description %></textarea>
+          </div>
+          <div class="flex">
+            <% if(quiz.private === true){%>
+              <input type="checkbox" id="private" name="private" checked>
+            <% } else {%>
+              <input type="checkbox" id="private" name="private">
+            <% } %>
+            <label for="private"> Is this quiz private?</label>
+          </div>
+            <button class="button1" type="submit">SAVE</button>
+      </form>
+
+      <form action="/quiz-settings/:id/new-question" method="POST">
+        <button class="button1" id="add-question">Add Question</button>
+      </form>
         <%for (let question in quizQuestions) {%>
           <div class="flex">
             <h5><%= quizQuestions[question].title %></h5>
-            <button class="button1">Edit</button>
-            <button class="button1">Delete</button>
+            <form action="/quiz-options/<%= quizQuestions[question].id %>">
+            <button class="button1" %>">Edit</button></form>
+            <form action="/quiz-settings/<%= quizQuestions[question].id %>/delete-question" method="POST">
+            <button class="button1" id="<%= quizQuestions[question].id %>">Delete</button>
+          </form>
           </div>
         <% } %>
       </div>
-      <div class="flex">
-        <input type="checkbox" id="Private" name="Private" value="Private">
-        <label for="Private"> Is this quiz private?</label>
-      </div>
-      <div>
-        <button class="button1" type="submit">SAVE</button>
-      </div>
-    </form>
+    </div>
+
   </body>
 </html>
