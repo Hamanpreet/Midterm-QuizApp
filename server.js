@@ -66,13 +66,14 @@ app.use("/quizzes", quizzes);
 app.use("/attempts", attempts);
 app.use("/quizAttempts", quizAttempts);
 app.use("/logout", logout);
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
   const user = req.session.user;
-  res.render("index", {user});
+  res.render("index", { user });
 });
 
 app.listen(PORT, () => {

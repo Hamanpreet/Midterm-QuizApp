@@ -23,11 +23,11 @@
   </head>
 
   <body>
-    <%- include('partials/_header') %>
+
     <div class="new-page">
-  <div class="flex">
+    <div class="flex">
       <h2>Quiz Settings: </h2>
-      <h2><%= quiz.title %></h2>
+      <h2><%= quiz.title.trim() %></h2>
     </div>
     <div class="quiz-settings-container" >
       <form action="/quiz-settings/:id" method="POST">

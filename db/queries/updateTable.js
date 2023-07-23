@@ -4,7 +4,7 @@ const createQuiz = function (id) {
   return db
     .query(
       `
-      INSERT INTO quizzes (owner_id) VALUES ($1);
+      INSERT INTO quizzes (owner_id, title) VALUES ($1, 'untitled');
   `,
       [id]
     )
@@ -66,6 +66,28 @@ const deleteQuizQuestion = function (id) {
     .catch((err) => console.error(err.message));
 };
 
+const updateQuestionTitle = function (title, id) {
+  return db
+    .query(
+      `
+      UPDATE questions SET title = $1 WHERE id = $2;
+  `,
+      [title, id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
+const updateQuestionQuestion = function (question, id) {
+  return db
+    .query(
+      `
+      UPDATE questions SET question = $1 WHERE id = $2;
+  `,
+      [question, id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 module.exports = {
   createQuiz,
   updateQuizTitle,
@@ -73,4 +95,6 @@ module.exports = {
   updateQuizPrivacy,
   deleteQuizQuestion,
   createQuizQuestion,
+  updateQuestionTitle,
+  updateQuestionQuestion,
 };
