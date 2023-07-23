@@ -33,10 +33,6 @@ router.post("/", (req, res) => {
   });
 });
 
-//clears cookie and redirect to login page
-router.post("/logout", (req,res) =>{
-  req.session.user_id = null;
-  res.redirect('/login');
-});
+
 
 module.exports = router;

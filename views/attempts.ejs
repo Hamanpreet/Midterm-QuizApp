@@ -17,7 +17,8 @@
 
 <body>
   <div class="attempts-container">
-    <h1>Attempts for <%= attempts[0].name %></h1>
+    <% if (attempts.length > 0) { %>
+      <h1>Attempts for <%= attempts[0].name %></h1>
     <table>
       <table>
         <thead>
@@ -39,6 +40,9 @@
       <% } %>
     </tbody>
   </table>
+  <% } else { %>
+    <h1>No attempts for this quiz</h1>
+  <% } %>
   </div>
 </body>
 

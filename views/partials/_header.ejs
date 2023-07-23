@@ -32,7 +32,7 @@
             <p>Logged in as: <%= user.email%>
               <form action="/logout" method="POST">
               <button type="submit" class="btn btn-primary">Logout</button></p>
-              
+              <li><a href="attempts/<% user.id %>">Attempts</a></li>
             </form>
             <% } else { %>
               <li><a href="/quizzes">Public Quizzes</a></li>

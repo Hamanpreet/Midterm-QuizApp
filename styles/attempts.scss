@@ -8,7 +8,7 @@ table {
   border-collapse: collapse;
   width: 100%;
 
- /
+ 
   th, td {
     padding: 8px;
     border-bottom: 1px solid $border-color;
@@ -27,13 +27,6 @@ h1 {
 
 .attempts-container {
   margin: 20px;
-}
-
-/* Center the text in th and td elements */
-th.center,
-td.center {
-  text-align: center;
-  padding-left:2px;
 }
 
 
