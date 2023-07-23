@@ -25,7 +25,7 @@
  {
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
 }
 
 #navbar-menu
@@ -40,7 +40,7 @@
   text-decoration:none;
   font-size: 16px;
   font-weight: 600;
-  color: 1a1a1a;
+  color: aquamarine;
   transition: 0.3s ease;
 }
 
@@ -49,4 +49,13 @@
 #navbar-menu
  li a.active {
   color: #088178;
+}
+
+// New style for the "Logged in as" section
+#navbar-menu .user-info {
+  font-size: 16px;
+  font-weight: 600;
+  color: #088178;
+  vertical-align: middle;
+  padding-right: 10px;
 }

@@ -28,43 +28,19 @@ router.post('/', (req,res) => {
     res.render('register', {errors});
   } else {
     return database.getUserWithEmail(email).then((user) => {
-      if (result.rows.length > 0) {
+      if (user) {
               errors.push({message:"Email already registered"});
               res.render('register', {errors});
             } else {
-              database.addUserToDatabase((name,email,password))
+              database.addUserToDatabase(name,email,password).then(result=> {
+                //console.log(result.rows);
+                res.redirect('/login');
+              })
             }
     })
+    .catch(err => console.error(err.message));
   }
-  // } else {
-  //   //Form validation has passed
-  //   return db
-  //   .query(`
-  //   SELECT *
-  //   FROM users
-  //   WHERE users.email = $1;
-  //   `,[email])
-  //   .then(result => {
-  //     console.log(result.rows);
-  //     if (result.rows.length > 0) {
-  //       errors.push({message:"Email already registered"});
-  //       res.render('register', {errors});
-  //     } else {
-  //       db.query(
-  //         `INSERT INTO users(name, email, password)
-  //         VALUES($1, $2, $3)
-  //         RETURNING *`,
-  //         [name, email, password]
-  //       ).then(result => {
-  //         console.log(result.rows);
-  //         res.redirect('/login');
-  //       })
 
-  //     }
-
-  //   })
-  //   .catch(err => console.error(err.message));
-  // }
 
 });
 
