@@ -50,6 +50,7 @@ const quizOptions = require("./routes/quiz-options");
 const quizSettings = require("./routes/quiz-settings");
 const quizzes = require("./routes/quizzes");
 const attempts = require("./routes/attempts");
+const quizAttempts = require("./routes/quizAttempts");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -62,6 +63,7 @@ app.use("/quiz-options", quizOptions);
 app.use("/quiz-settings", quizSettings);
 app.use("/quizzes", quizzes);
 app.use("/attempts", attempts);
+app.use("/quizAttempts", quizAttempts);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).

@@ -15,18 +15,4 @@ router.get('/', (req, res) => {
   });
 });
 
-//show a particular quiz questions
-router.get("/:id", (req, res) => {
-  database.getQuestionsWithQuizId(req.params.id)
-  .then((questions)=>{
-    console.log(questions);
-    const templateVars = {questions : questions};
-    res.render("questions",templateVars);
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
-});
-
-
 module.exports = router;

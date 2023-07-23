@@ -80,10 +80,22 @@ const getQuestionsWithQuizId = (quizId) => {
     .catch((err) => console.error(err.message));
 };
 
+
+const getOptionsWithQuestionId = (questionId) => {
+  return db.query(`SELECT * FROM options WHERE question_id = $1`,[questionId])
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => {
+    console.error(err.message);
+  })
+}
+
 module.exports = {
   getQuiz,
   getQuizQuestions,
   getAllPublicQuizzes,
   getQuestionsWithQuizId,
   getQuizQuestionsOptions,
+  getOptionsWithQuestionId,
 };
