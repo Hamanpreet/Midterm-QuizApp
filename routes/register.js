@@ -1,12 +1,12 @@
 const express = require('express');
 const router  = express.Router();
-// const database = require("../db/queries/users.js");
-const db = require('../db/connection');
+const database = require("../db/queries/users.js");
 //const session = require('express-session');
 
 
 router.get('/', (req, res) => {
-  res.render('register');
+  const user = req.session.user;
+  res.render('register', {user});
 });
 
 router.post('/', (req,res) => {
@@ -27,34 +27,20 @@ router.post('/', (req,res) => {
   if (errors.length > 0) {
     res.render('register', {errors});
   } else {
-    //Form validation has passed
-    return db
-    .query(`
-    SELECT *
-    FROM users
-    WHERE users.email = $1;
-    `,[email])
-    .then(result => {
-      console.log(result.rows);
-      if (result.rows.length > 0) {
-        errors.push({message:"Email already registered"});
-        res.render('register', {errors});
-      } else {
-        db.query(
-          `INSERT INTO users(name, email, password)
-          VALUES($1, $2, $3)
-          RETURNING *`,
-          [name, email, password]
-        ).then(result => {
-          console.log(result.rows);
-          res.redirect('/login');
-        })
-
-      }
-
+    return database.getUserWithEmail(email).then((user) => {
+      if (user) {
+              errors.push({message:"Email already registered"});
+              res.render('register', {errors});
+            } else {
+              database.addUserToDatabase(name,email,password).then(result=> {
+                //console.log(result.rows);
+                res.redirect('/login');
+              })
+            }
     })
     .catch(err => console.error(err.message));
   }
+
 
 });
 

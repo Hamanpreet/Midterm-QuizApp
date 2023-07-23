@@ -4,7 +4,6 @@ const router  = express.Router();
 const database = require("../db/queries/quiz");
 
 // show a particular quiz questions
-// show a particular quiz questions
 router.get("/:id", (req, res) => {
   database.getQuestionsWithQuizId(req.params.id)
     .then((questions) => {
@@ -16,7 +15,8 @@ router.get("/:id", (req, res) => {
       // Wait for all options to be fetched before proceeding
       return Promise.all(optionsPromises)
         .then((options) => {
-          const templateVars = { questions, options };
+          const user = req.session.user;
+          const templateVars = { questions, options,user };
           res.render("questions", templateVars);
         })
         .catch((err) => {
