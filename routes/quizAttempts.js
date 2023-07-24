@@ -5,6 +5,7 @@ const database = require("../db/queries/quiz");
 
 // show a particular quiz questions
 router.get("/:id", (req, res) => {
+  
   database.getQuestionsWithQuizId(req.params.id)
     .then((questions) => {
       // Fetch options for all questions concurrently using Promise.all

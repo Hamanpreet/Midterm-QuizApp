@@ -5,7 +5,7 @@ const router  = express.Router();
 
 router.all("/", (req,res) =>{
   req.session.user = null;
-  res.redirect('/quizzes');
+  res.redirect('/login');
 });
 
 

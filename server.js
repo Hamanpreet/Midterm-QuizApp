@@ -61,9 +61,10 @@ app.use("/users", usersRoutes);
 app.use("/login", login);
 app.use("/register", register);
 app.use("/quiz-options", quizOptions);
+app.use("/attempts", attempts);
 app.use("/quiz-settings", quizSettings);
 app.use("/quizzes", quizzes);
-app.use("/attempts", attempts);
+
 app.use("/quizAttempts", quizAttempts);
 app.use("/logout", logout);
 
@@ -73,6 +74,7 @@ app.use("/logout", logout);
 
 app.get("/", (req, res) => {
   const user = req.session.user;
+  console.log("user from index",user);
   res.render("index", { user });
 });
 
