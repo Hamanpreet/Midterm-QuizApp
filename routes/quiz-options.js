@@ -5,6 +5,7 @@ const updateTable = require("../db/queries/updateTable");
 
 router.get("/:id", (req, res) => {
   req.session.question_id = req.params.id;
+  
   quizQueries
     .getQuizQuestion(req.session.question_id)
     .then((question) => {

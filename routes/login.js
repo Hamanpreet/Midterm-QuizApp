@@ -5,7 +5,14 @@ const database = require("../db/queries/users");
 
 router.get("/", (req, res) => {
   const user = req.session.user;
-  res.render("login", { user });
+
+  // If the user is already logged in, redirect them to the homepage
+  if (user) {
+    return res.redirect("/");
+  }
+
+  // If the user is not logged in, render the login page
+  res.render("login",{user});
 });
 
 // Log a user in
@@ -23,7 +30,8 @@ router.post("/", (req, res) => {
         return res.status(403).send({ error: "password not correct" });
       }
       req.session.user = user;
-      res.redirect("/quizzes");
+      res.redirect("/attempts");
+      //res.render("index",{user});
     })
     .catch((err) => {
       console.error(err.message);

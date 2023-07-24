@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
       quizQueries
         .getQuizQuestions(req.session.quiz_id)
         .then((quizQuestions) => {
-          const quizInfo = { quiz, quizQuestions };
+          const quizInfo = { quiz, quizQuestions,user };
           res.render("quiz-settings", quizInfo);
         });
     })
