@@ -68,7 +68,7 @@ app.use("/quiz-settings", quizSettings);
 app.use("/quizzes", quizzes);
 app.use("/quizAttempts", quizAttempts);
 app.use("/logout", logout);
-app.use("start-quiz", startQuiz);
+app.use("/start-quiz", startQuiz);
 
 // Home page
 // Warning: avoid creating more routes in this file!

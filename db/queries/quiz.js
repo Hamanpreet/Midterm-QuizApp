@@ -135,8 +135,7 @@ const getAttemptsForUserID = function (userid) {
   JOIN quizzes ON attempts.quiz_id=quizzes.id
   WHERE users.id = $1;
   `,
-      [userid]
-    )
+  [userid])
     .then((res) => {
       console.log(res.rows);
       return res.rows;

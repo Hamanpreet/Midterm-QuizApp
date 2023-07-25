@@ -22,12 +22,12 @@
   
 
   <div class="container">
-    <h2 class="quiz-title">Welcome to %=quizzes[i].title%></h2>
+    <h2 class="quiz-title">Welcome to <%= quiz.title %></h2>
     <p>
-      Test your knowledge with our exciting quiz. Are you ready to begin?
+      <%= quiz.description %>
     </p>
     
-    <a href="/quizAttempts/<%=quizzes[i].id%>" class="start-button">Start Quiz</a>
+    <a href="/quizAttempts/<%=quiz.id%>" class="start-button">Start Quiz</a>
   </div>
   </form>
 

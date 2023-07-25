@@ -4,9 +4,16 @@ $background-color: #f2f2f2;
 $even-row-color: #f9f9f9;
 
 
+.public-container {
+  margin: 20px auto;
+  width: 90%;
+}
+
+
 table {
   border-collapse: collapse;
   width: 100%;
+  padding-left: 10px;
 
  
   th, td {
