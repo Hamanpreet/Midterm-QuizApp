@@ -5,8 +5,8 @@ const database = require("../db/queries/quiz");
 
 // show a particular quiz questions
 router.get("/:id", (req, res) => {
-  
-  database.getQuestionsWithQuizId(req.params.id)
+  const quizId = req.params.id;
+  database.getQuestionsWithQuizId(quizId)
     .then((questions) => {
       // Fetch options for all questions concurrently using Promise.all
       const optionsPromises = questions.map((question) => {
@@ -17,8 +17,10 @@ router.get("/:id", (req, res) => {
       return Promise.all(optionsPromises)
         .then((options) => {
           const user = req.session.user;
-          const templateVars = { questions, options,user };
-          res.render("questions", templateVars);
+          questionsArray = questions;
+          optionsArray = options;
+          const templateVars = { questions, options, user, quizId };
+          res.render("quizAttempt", templateVars);
         })
         .catch((err) => {
           console.error(err);
@@ -31,5 +33,21 @@ router.get("/:id", (req, res) => {
     });
 });
 
+
+router.post("/:id/submit", async (req, res) => {
+  const quizId = req.params.id;
+  const userAnswers = req.body;
+
+  try {
+    const score = await database.checkAnswers(quizId, userAnswers);
+
+    console.log(score);
+
+    res.redirect(`/quiz/${quizId}/result?score=${score}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 module.exports = router;

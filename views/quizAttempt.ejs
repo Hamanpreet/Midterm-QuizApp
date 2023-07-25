@@ -16,23 +16,27 @@
 <body>
   <%- include('partials/_header') %>
 <div class="container">
-  <% let serialNumber = 1; %>
-  <% for (const question of questions) { %>
-    <h2 class="question"><%= serialNumber %>. <%= question.question %></h2>
-    <ul class="options">
-      <% for (const optionGroup of options) { %>
-        <% for (const option of optionGroup) { %>
-          <% if (option.question_id === question.id) { %>
-            <li>
-              <input type="radio" name="<%= 'question_' + question.id %>" id="<%= 'option_' + option.id %>" value="<%= option.id %>" />
+  <form action="/quizAttempts/<%= quizId %>/submit" method="POST">
+    <% let serialNumber = 1; %>
+    <% for (const question of questions) { %>
+      <h2 class="question"><%= serialNumber %>. <%= question.question %></h2>
+      <ul class="options">
+        <% for (const optionGroup of options) { %>
+          <% for (const option of optionGroup) { %>
+            <% if (option.question_id === question.id) { %>
+              <li>
+                <input type="radio" name="<%= 'question_' + question.id %>" id="<%= 'option_' + option.id %>" value="<%= option.id %>" />
                 <label for="<%= 'option_' + option.id %>"><%= option.description %></label>
-            </li>
+              </li>
+            <% } %>
           <% } %>
         <% } %>
-      <% } %>
-    </ul>
-    <% serialNumber++; %>
-  <% } %>
+      </ul>
+      <% serialNumber++; %>
+    <% } %>
+    <input type="submit" value="Submit Quiz">
+  </form>
 </div>
 </body>
+
 </html>

@@ -1,8 +1,8 @@
 -- question table seeds here
-INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 1','What country has the highest life expectancy? ', 2);
-INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 2','Which language has the more native speakers?', 5);
-INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 3','What is the most common surname in the United States?', 11);
-INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 4','What disease commonly spread on pirate ships?', 13);
+INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 1','What country has the highest life expectancy? ', 1);
+INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 2','Which language has the more native speakers?', 7);
+INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 3','What is the most common surname in the United States?', 9);
+INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (1, 'question 4','What disease commonly spread on pirate ships?', 14);
 INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (2, 'question 1','Who was the Ancient Greek God of the Sun?', 19);
 INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (2, 'question 2','What year was the United Nations established?', 23);
 INSERT INTO questions (quiz_id, title, question, answer_id) VALUES (2, 'question 3','Who has won the most total Academy Awards?', 25);

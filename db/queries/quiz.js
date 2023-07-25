@@ -144,6 +144,29 @@ const getAttemptsForUserID = function (userid) {
     .catch((err) => console.error(err.message));
 };
 
+const checkAnswers = (quizId, userAnswers) => {
+  // Get the correct answer IDs from the database for the given quiz
+  return db.query('SELECT id, answer_id FROM questions WHERE quiz_id = $1', [quizId])
+    .then((result) => {
+      const questions = result.rows;
+      let score = 0;
+      for (const question of questions) {
+        const questionId = question.id;
+        const correctAnswerId = question.answer_id;
+        const submittedAnswerId = userAnswers['question_' + questionId];
+
+        if (submittedAnswerId === correctAnswerId.toString()) {
+          score++;
+        }
+      }
+      return score;
+    })
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
+}
+
 module.exports = {
   getQuiz,
   getNewestQuiz,
@@ -154,4 +177,5 @@ module.exports = {
   getQuizQuestionsOptions,
   getOptionsWithQuestionId,
   getAttemptsForUserID,
+  checkAnswers
 };
