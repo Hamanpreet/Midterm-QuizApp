@@ -14,9 +14,8 @@
 </head>
 
 <body>
-  <%- include('partials/_header') %>
 <div class="container">
-  <form action="/quizAttempts/<%= quizId %>/submit" method="POST">
+  <form class="quiz-form" action="/quizAttempts/<%= quizId %>/submit" method="POST">
     <% let serialNumber = 1; %>
     <% for (const question of questions) { %>
       <h2 class="question"><%= serialNumber %>. <%= question.question %></h2>
@@ -34,7 +33,7 @@
       </ul>
       <% serialNumber++; %>
     <% } %>
-    <input type="submit" value="Submit Quiz">
+    <input type="submit" value="Submit Quiz" class="start-button">
   </form>
 </div>
 </body>
