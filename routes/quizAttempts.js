@@ -37,17 +37,27 @@ router.get("/:id", (req, res) => {
 router.post("/:id/submit", async (req, res) => {
   const quizId = req.params.id;
   const userAnswers = req.body;
+  const userId = req.session.user ? req.session.user.id : null;
 
   try {
-    const score = await database.checkAnswers(quizId, userAnswers);
-
-    console.log(score);
-
-    res.redirect(`/quiz/${quizId}/result?score=${score}`);
+    const grade = await database.checkAnswers(quizId, userAnswers);
+    if (!userId) {
+      // If userId is not available, send the score as a response
+      return res.status(200).send(`Your score: ${grade}`);
+    } else {
+      // If userId is available, save the grade and redirect to the attempts page
+      const saveAttempt = await database.saveGrade(quizId, userId, grade);
+      if (saveAttempt) {
+        return res.redirect(`/attempts/${userId}`);
+      } else {
+        return res.status(500).send("Failed to save the grade.");
+      }
+    }
   } catch (err) {
     console.error(err);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 });
+
 
 module.exports = router;

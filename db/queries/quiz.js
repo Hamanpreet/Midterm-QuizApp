@@ -158,13 +158,33 @@ const checkAnswers = (quizId, userAnswers) => {
           score++;
         }
       }
-      return score;
+      return `${score}/${questions.length}`;
     })
     .catch((err) => {
       console.error(err);
       throw err;
     });
-}
+};
+
+
+function saveGrade(quizId, userId, grade) {
+  const query = 'INSERT INTO attempts (user_id, quiz_id, grade) VALUES ($1, $2, $3)';
+    return db.query(query, [userId, quizId, grade])
+    .then((result) => {
+    // Check if the insertion was successful
+      if (result.rowCount > 0) {
+        console.log('Grade saved successfully.');
+        return true; // Indicate successful insertion
+      } else {
+        console.log('Grade insertion failed.');
+        return false; // Indicate failed insertion
+      }
+    })
+    .catch (err => {
+      console.error('Error saving grade:', err);
+      throw err;
+    });
+  }
 
 module.exports = {
   getQuiz,
@@ -176,5 +196,6 @@ module.exports = {
   getQuizQuestionsOptions,
   getOptionsWithQuestionId,
   getAttemptsForUserID,
-  checkAnswers
+  checkAnswers,
+  saveGrade
 };
