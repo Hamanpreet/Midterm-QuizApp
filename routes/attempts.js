@@ -4,7 +4,7 @@ const database = require("../db/queries/quiz");
 
 router.get('/:userId?', (req, res) => {
   // Get the userId from the URL parameter or from the session
-  const userID = req.session.user.id || req.params.userId;
+  const userID = req.session.user ? req.session.user.id : req.params.userId;
   
   database.getAttemptsForUserID(userID)
   .then((attempts) => {
