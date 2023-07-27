@@ -27,8 +27,8 @@ router.post('/', (req,res) => {
   if (errors.length > 0) {
     res.render('register', {errors});
   } else {
-    return database.getUserWithEmail(email).then((user) => {
-      if (user) {
+    return database.getUserWithEmail(email).then((userdb) => {
+      if (userdb) {
               errors.push({message:"Email already registered"});
               res.render('register', {errors});
             } else {

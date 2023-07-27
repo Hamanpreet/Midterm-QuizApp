@@ -26,6 +26,17 @@
     <p>
       <%= quiz.description %>
     </p>
+    <p class="instructions">
+      Instructions:
+      <ul>
+        <li>Each question will have multiple options.</li>
+        <li>Select the correct answer for each question.</li>
+        <li>Attempt all questions; unanswered questions will be considered incorrect.</li>
+        <li>If you are taking an unlisted quiz, it won't appear on the home page but can be accessed via the direct link.</li>
+        <li>Share your quiz results with friends by copying and sharing the results link.</li>
+        <li>Click the "Submit Quiz" button at the end to see your results.</li>
+      </ul>
+    </p>
     
     <a href="/quizAttempts/<%=quiz.id%>" class="start-button">Start Quiz</a>
   </div>
