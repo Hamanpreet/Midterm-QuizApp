@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
       quizQueries
         .getQuizQuestions(req.session.quiz_id)
         .then((quizQuestions) => {
-          const quizInfo = { quiz, quizQuestions,user };
+          const quizInfo = { quiz, quizQuestions, user };
           res.render("quiz-settings", quizInfo);
         });
     })
@@ -71,11 +71,23 @@ router.post("/:id/new-question", (req, res) => {
 });
 
 router.post("/:id/delete-question", (req, res) => {
-  console.log(req.params.id);
   updateTable
     .deleteQuizQuestion(req.params.id)
     .then(() => {
       res.redirect("/quiz-settings/" + req.session.quiz_id);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("An error occurred");
+    });
+});
+
+router.post("/:id/delete-quiz", (req, res) => {
+  console.log(req.params.id);
+  updateTable
+    .deleteQuiz(req.params.id)
+    .then(() => {
+      res.redirect("/quizzes");
     })
     .catch((err) => {
       console.error(err.message);

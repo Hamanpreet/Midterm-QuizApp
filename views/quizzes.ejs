@@ -1,44 +1,55 @@
 <!-- views/questions.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Quizzes</title>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/attempts.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+      integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="/vendor/jquery-3.0.0.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Available Quizzes</title>
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/attempts.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="/vendor/jquery-3.0.0.js"></script>
-</head>
-
-<body>
-  <%- include('partials/_header') %>
-  <h1>Public Quizzes</h1>
-  <div class="public-container">
-    <table>
-      <tr>
-        <th>Quiz Number</th>
-        <th>Quiz Title</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      <% for (let i = 0; i < quizzes.length; i++) { %>
+  <body>
+    <%- include('partials/_header') %>
+    <h1>Public Quizzes</h1>
+    <div class="public-container">
+      <table>
+        <tr>
+          <th>Quiz Number</th>
+          <th>Quiz Title</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% for (let i = 0; i < quizzes.length; i++) { %>
         <tr>
           <td><span class="quiz-number"><%= i + 1 %>.</span></td>
-          <td><a href="/start-quiz/<%=quizzes[i].id%>"><%= quizzes[i].title %></a></td>
+          <td>
+            <a href="/start-quiz/<%=quizzes[i].id%>"><%= quizzes[i].title %></a>
+          </td>
           <td><a href="/quiz-settings/<%=quizzes[i].id%>">Edit</a></td>
           <td>
-            <form action="/quiz-settings/<%=quizzes[i].id%>?_method=DELETE" method="POST" style="display: inline;">
+            <form
+              action="/quiz-settings/<%=quizzes[i].id%>/delete-quiz"
+              method="POST"
+              style="display: inline"
+            >
               <button type="submit">Delete</button>
             </form>
           </td>
         </tr>
-      <% } %>
-    </table>
-  </div>
-</body>
+        <% } %>
+      </table>
+    </div>
+  </body>
 </html>

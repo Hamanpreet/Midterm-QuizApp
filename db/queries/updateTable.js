@@ -55,6 +55,17 @@ const createQuizQuestion = function (id) {
     .catch((err) => console.error(err.message));
 };
 
+const deleteQuiz = function (id) {
+  return db
+    .query(
+      `
+      DELETE FROM quizzes WHERE id = $1;
+  `,
+      [id]
+    )
+    .catch((err) => console.error(err.message));
+};
+
 const deleteQuizQuestion = function (id) {
   return db
     .query(
@@ -137,6 +148,7 @@ module.exports = {
   updateQuizTitle,
   updateQuizDescription,
   updateQuizPrivacy,
+  deleteQuiz,
   deleteQuizQuestion,
   createQuizQuestion,
   updateQuestionTitle,
