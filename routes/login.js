@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
         return res.status(403).send({ error: "password not correct" });
       }
       req.session.user = user;
-      res.redirect("/attempts");
+      res.redirect(`/attempts/${user.id}`);
       //res.render("index",{user});
     })
     .catch((err) => {

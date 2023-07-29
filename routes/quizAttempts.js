@@ -43,7 +43,9 @@ router.post("/:id/submit", async (req, res) => {
     const grade = await database.checkAnswers(quizId, userAnswers);
     if (!userId) {
       // If userId is not available, send the score as a response
-      return res.status(200).send(`Your score: ${grade}`);
+      //return res.status(200).send(`Your score: ${grade}`);
+      const templateVars = { grade };
+      return res.render('resultDisplay', templateVars);
     } else {
       // If userId is available, save the grade and redirect to the attempts page
       const saveAttempt = await database.saveGrade(quizId, userId, grade);
