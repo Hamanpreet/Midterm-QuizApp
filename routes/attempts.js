@@ -2,10 +2,10 @@ const express = require('express');
 const router  = express.Router();
 const database = require("../db/queries/quiz");
 
-router.get('/:userId?', (req, res) => {
+router.get('/:userId', (req, res) => {
   // Get the userId from the URL parameter or from the session
   const userID = req.session.user ? req.session.user.id : req.params.userId;
-  
+
   database.getAttemptsForUserID(userID)
   .then((attempts) => {
     console.log(attempts);
@@ -18,6 +18,8 @@ router.get('/:userId?', (req, res) => {
     res.status(500).send('An error occurred');
   });
 });
+
+
 
 
 module.exports = router;
